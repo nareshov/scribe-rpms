@@ -7,8 +7,8 @@ Version:        %{ver}
 Release:        kiwi1
 Summary:        facebook thrift
 Group:          Development/Languages
-License:        ERPL
-URL:            http://www.mozilla.org
+License:        Apache Software License
+URL:            https://github.com/facebook/scribe
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source:         http://cloud.github.com/downloads/facebook/scribe/scribe.tar.gz
 Patch0:		scribe-aclocal-lib64.patch
