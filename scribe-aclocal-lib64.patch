@@ -1,0 +1,26 @@
+diff -uNr scribe/aclocal/ax_boost_base.m4 scribe-patched/aclocal/ax_boost_base.m4
+--- scribe/aclocal/ax_boost_base.m4	2011-11-08 12:44:47.000000000 +0530
++++ scribe-patched/aclocal/ax_boost_base.m4	2011-11-08 12:45:15.000000000 +0530
+@@ -67,12 +67,20 @@
+ 	dnl this location ist chosen if boost libraries are installed with the --layout=system option
+ 	dnl or if you install boost with RPM
+ 	if test "$ac_boost_path" != ""; then
+-		BOOST_LDFLAGS="-L$ac_boost_path/lib"
++		if test -d "$ac_boost_path/lib64"; then
++			BOOST_LDFLAGS="-L$ac_boost_path/lib64"
++		else
++			BOOST_LDFLAGS="-L$ac_boost_path/lib"
++		fi
+ 		BOOST_CPPFLAGS="-I$ac_boost_path/include"
+ 	else
+ 		for ac_boost_path_tmp in /usr /usr/local /opt /opt/local ; do
+ 			if test -d "$ac_boost_path_tmp/include/boost" && test -r "$ac_boost_path_tmp/include/boost"; then
+-				BOOST_LDFLAGS="-L$ac_boost_path_tmp/lib"
++				if test -d "$ac_boost_path_tmp/lib64"; then
++		                        BOOST_LDFLAGS="-L$ac_boost_path_tmp/lib64"
++                		else                    
++                        		BOOST_LDFLAGS="-L$ac_boost_path_tmp/lib"
++                		fi
+ 				BOOST_CPPFLAGS="-I$ac_boost_path_tmp/include"
+ 				break;
+ 			fi
